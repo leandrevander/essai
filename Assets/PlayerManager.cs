@@ -1,14 +1,15 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
+
 
 public class PlayerManager : MonoBehaviour
 {
     public int pv;
-    public GameObject zombie;
     private CircleCollider2D playerCollider;
     private bool peutPrendreDesDegats = true;
-    
+    public NavMeshAgent zombieAgent;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,6 +39,8 @@ public class PlayerManager : MonoBehaviour
         if (pv <= 0)
         {
                 print("Game Over");
+                //zombieAgent.enabled = false;
+                gameObject.SetActive(false);
         }
         yield return new WaitForSeconds(1);
         peutPrendreDesDegats = true;

@@ -221,11 +221,11 @@ Transform:
   m_LocalScale: {x: 18.67436, y: 8.170746, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1381193653}
   - {fileID: 1156214060}
   - {fileID: 262604920}
   - {fileID: 632522212}
   - {fileID: 449680877}
-  - {fileID: 1381193653}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &262604919
@@ -1010,7 +1010,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.18621254, y: 0.002141787, z: 0}
-  m_LocalScale: {x: 0.059777148, y: 0.23149659, z: 1}
+  m_LocalScale: {x: 0.059777148, y: 0.23149656, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 243621608}
@@ -1095,7 +1095,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 0.8207547, g: 0.127759, b: 0.127759, a: 1}
   m_FlipX: 0
@@ -1496,7 +1496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pv: 3
-  zombie: {fileID: 1789218064}
+  zombieAgent: {fileID: 1789218069}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

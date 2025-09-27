@@ -18,7 +18,11 @@ public class IAZombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.destination = player.position;
+        if(player != null)
+        {
+            agent.destination = player.position;
+   
+        }
         
     }
 }
