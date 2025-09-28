@@ -3,13 +3,14 @@ using UnityEngine.AI;
 
 public class IAZombie : MonoBehaviour
 {
-    public Transform player;
+    private GameObject player;
     public NavMeshAgent agent;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        player = GameObject.FindWithTag("Player");
+
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -20,7 +21,7 @@ public class IAZombie : MonoBehaviour
     {
         if(player != null)
         {
-            agent.destination = player.position;
+            agent.destination = player.transform.position;
    
         }
         
