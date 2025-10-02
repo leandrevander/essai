@@ -103,7 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d3d7b672f2a9f48a8e45d1c16e18cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  isHitten: 0
+  pvZombie: 10
   agent: {fileID: 5577945856125957842}
 --- !u!50 &1948929271590644476
 Rigidbody2D:

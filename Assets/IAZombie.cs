@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class IAZombie : MonoBehaviour
 {
+    public bool isHitten = false;
+    public int pvZombie;
     private GameObject player;
     public NavMeshAgent agent;
     
@@ -14,6 +17,7 @@ public class IAZombie : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        
     }
 
     // Update is called once per frame
@@ -24,6 +28,26 @@ public class IAZombie : MonoBehaviour
             agent.destination = player.transform.position;
    
         }
+        if (isHitten == true)
+        {
+            StartCoroutine(AttaqueZombie(1f)); 
+        }
         
+    }
+    IEnumerator AttaqueZombie(float delai)
+    {
+        print("zombie se fait attaqué");
+
+        pvZombie--;
+
+        if (pvZombie <= 0)
+        {
+
+            Destroy(gameObject);
+            
+        }
+        isHitten = false;
+
+        yield return new WaitForSecondsRealtime(2);
     }
 }

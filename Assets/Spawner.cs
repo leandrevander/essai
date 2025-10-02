@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
     public float minDistance;
     public float maxDistance;
 
-    private float distance;
+    public float distance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +26,7 @@ public class Spawner : MonoBehaviour
         {
             spawnTimer = 0;
             SpawnEnemy();
+            print("Spawné");
         }
     }
 
