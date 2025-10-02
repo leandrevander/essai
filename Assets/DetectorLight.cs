@@ -8,8 +8,9 @@ public class DetectorLight : MonoBehaviour
     public GameObject player;
     private float zombieDistance;
     public Spawner spawner;
-    private float d;
+    private float distance;
     private IAZombie iaZombie;
+    public LayerMask raycastMask;
     
     
 
@@ -17,7 +18,7 @@ public class DetectorLight : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        d = spawner.distance; 
+        
         
     }
 
@@ -32,13 +33,17 @@ public class DetectorLight : MonoBehaviour
         if (other.CompareTag("Zombie"))
         {
             
+            
             cibleZombie = other.transform;
             Vector2 direction = (cibleZombie.position - player.transform.position).normalized;
-            RaycastHit2D hit = Physics2D.Raycast(player.transform.position, direction, d);
-            Debug.DrawRay(player.transform.position, direction, Color.red);
+            distance = Vector2.Distance(player.transform.position,cibleZombie.position);
+            
+            RaycastHit2D hit = Physics2D.Raycast(player.transform.position, direction, distance,raycastMask);
+            
+            Debug.DrawRay(player.transform.position, direction * distance, Color.red);
             {
                 iaZombie = cibleZombie.GetComponent<IAZombie>(); // on recupere le component du zombie touché par le raycast
-                if (hit.transform == cibleZombie) // si les coordonnées du raycast sont bien au meme endroit que celui du zombie alors il se fait attaqué
+                if (hit.collider.transform == cibleZombie) // si les coordonnées du raycast sont bien au meme endroit que celui du zombie alors il se fait attaqué
                 {
                     Debug.Log("TOUCH2");
                     iaZombie.isHitten = true;

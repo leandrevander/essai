@@ -2,12 +2,15 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 
+
 public class IAZombie : MonoBehaviour
 {
     public bool isHitten = false;
     public int pvZombie;
     private GameObject player;
     public NavMeshAgent agent;
+    public bool playerHitten = false;
+    private PlayerManager playerManager;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +20,7 @@ public class IAZombie : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        playerManager = player.GetComponent<PlayerManager>();
         
     }
 
@@ -28,7 +32,7 @@ public class IAZombie : MonoBehaviour
             agent.destination = player.transform.position;
    
         }
-        if (isHitten == true)
+        if (isHitten)
         {
             StartCoroutine(AttaqueZombie(1f)); 
         }
@@ -49,5 +53,12 @@ public class IAZombie : MonoBehaviour
         isHitten = false;
 
         yield return new WaitForSecondsRealtime(2);
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") && playerManager.peutPrendreDesDegats)
+        {
+            StartCoroutine(playerManager.PertePV());
+        }
     }
 }

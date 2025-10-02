@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
 {
     public int pv;
     private CircleCollider2D playerCollider;
-    private bool peutPrendreDesDegats = true;
+    public bool peutPrendreDesDegats = true;
     public NavMeshAgent zombieAgent;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,15 +23,15 @@ public class PlayerManager : MonoBehaviour
        
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Zombie") && peutPrendreDesDegats)
-        {
-            StartCoroutine(PertePV(1f));
-        }
-    }
+   // private void OnTriggerStay2D(Collider2D other)
+   // {
+        //if (other.CompareTag("Zombie") && peutPrendreDesDegats)
+       // {
+           //StartCoroutine(PertePV());
+       // }
+   // }
 
-    IEnumerator PertePV(float delai)
+    public IEnumerator PertePV()
     {
         peutPrendreDesDegats = false;
         pv--;
@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour
         {
                 print("Game Over");
                 //zombieAgent.enabled = false;
-                gameObject.SetActive(false);
+                gameObject.SetActive(false);   
         }
         yield return new WaitForSeconds(1);
         peutPrendreDesDegats = true;

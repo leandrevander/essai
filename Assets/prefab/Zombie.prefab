@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1948929271590644476}
   - component: {fileID: 5577945856125957842}
   - component: {fileID: 3933394416027461573}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Zombie
   m_TagString: Zombie
   m_Icon: {fileID: 0}
@@ -104,8 +104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHitten: 0
-  pvZombie: 10
+  pvZombie: 500
   agent: {fileID: 5577945856125957842}
+  playerHitten: 0
 --- !u!50 &1948929271590644476
 Rigidbody2D:
   serializedVersion: 5

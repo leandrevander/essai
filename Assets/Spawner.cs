@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
     public float minDistance;
     public float maxDistance;
 
-    public float distance;
+    public float distanceSpawn;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,8 +34,8 @@ public class Spawner : MonoBehaviour
     {
         float angleDegre = Random.Range(0f, 360f);
         float angleRad = angleDegre * Mathf.Deg2Rad;
-        float distance = Random.Range(minDistance, maxDistance);
-        Vector2 SpawnPosition = new Vector2(Mathf.Cos(angleRad) * distance, Mathf.Sin(angleRad)* distance);
+        float distanceSpawn = Random.Range(minDistance, maxDistance);
+        Vector2 SpawnPosition = new Vector2(Mathf.Cos(angleRad) * distanceSpawn, Mathf.Sin(angleRad)* distanceSpawn);
         Instantiate(enemyprefab, SpawnPosition, Quaternion.identity);
     }
 }
