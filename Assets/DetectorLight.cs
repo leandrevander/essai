@@ -7,10 +7,10 @@ public class DetectorLight : MonoBehaviour
     private Transform cibleZombie;
     public GameObject player;
     private float zombieDistance;
-    public Spawner spawner;
     private float distance;
     private IAZombie iaZombie;
     public LayerMask raycastMask;
+    
     
     
 
@@ -18,7 +18,7 @@ public class DetectorLight : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        Physics2D.queriesHitTriggers = true;  
         
     }
 
@@ -30,6 +30,8 @@ public class DetectorLight : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        //Debug.Log("Trigger object: " + other.name + " | Tag: " + other.tag);
+
         if (other.CompareTag("Zombie"))
         {
             
@@ -38,20 +40,24 @@ public class DetectorLight : MonoBehaviour
             Vector2 direction = (cibleZombie.position - player.transform.position).normalized;
             distance = Vector2.Distance(player.transform.position,cibleZombie.position);
             
-            RaycastHit2D hit = Physics2D.Raycast(player.transform.position, direction, distance,raycastMask);
+            RaycastHit2D hit = Physics2D.Raycast(player.transform.position, direction, distance, raycastMask);
             
             Debug.DrawRay(player.transform.position, direction * distance, Color.red);
+            
+            if (hit.collider !=null && hit.collider == other) // si les coordonnées du raycast sont bien au meme endroit que celui du zombie alors il se fait attaqué
             {
-                iaZombie = cibleZombie.GetComponent<IAZombie>(); // on recupere le component du zombie touché par le raycast
-                if (hit.collider.transform == cibleZombie) // si les coordonnées du raycast sont bien au meme endroit que celui du zombie alors il se fait attaqué
-                {
-                    Debug.Log("TOUCH2");
-                    iaZombie.isHitten = true;
-                }
-            }
-        }
 
+                iaZombie = cibleZombie.GetComponent<IAZombie>();// on recupere le component du zombie touché par le raycast
+
+                Debug.Log("LE RAYCAST TOUCHE LE ZOMBIE LOL CACA PROUT DIEU MERCI");
+                iaZombie.isHitten = true;
+            }
+               
+               
+        }
     }
 
-   
 }
+
+   
+
