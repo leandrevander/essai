@@ -10,6 +10,8 @@ public class Spawner : MonoBehaviour
 
     public float minDistance;
     public float maxDistance;
+    private Collider2D newEnemyCol;
+    
 
     public float distanceSpawn;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,12 +32,16 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    void SpawnEnemy()
+    public void SpawnEnemy()
     {
         float angleDegre = Random.Range(0f, 360f);
         float angleRad = angleDegre * Mathf.Deg2Rad;
         float distanceSpawn = Random.Range(minDistance, maxDistance);
         Vector2 SpawnPosition = new Vector2(Mathf.Cos(angleRad) * distanceSpawn, Mathf.Sin(angleRad)* distanceSpawn);
-        Instantiate(enemyprefab, SpawnPosition, Quaternion.identity);
+        GameObject newEnemy = Instantiate(enemyprefab, SpawnPosition, Quaternion.identity);
+        
+        
+        
+        
     }
 }

@@ -11,11 +11,13 @@ public class IAZombie : MonoBehaviour
     public NavMeshAgent agent;
     public bool playerHitten = false;
     private PlayerManager playerManager;
+    private Spawner spawner;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        spawner = GameObject.FindWithTag("Player").GetComponent<Spawner>();
 
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
@@ -27,7 +29,7 @@ public class IAZombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player != null)
+        if(player != null && agent.isOnNavMesh)
         {
             agent.destination = player.transform.position;
    
@@ -59,6 +61,12 @@ public class IAZombie : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player") && playerManager.peutPrendreDesDegats)
         {
             StartCoroutine(playerManager.PertePV());
+        }
+        if (other.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+        {
+            Destroy(gameObject);
+            spawner.SpawnEnemy();
+            Debug.Log("zombie spawn à un autre endroit");
         }
     }
 }

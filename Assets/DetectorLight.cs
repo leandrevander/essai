@@ -44,10 +44,10 @@ public class DetectorLight : MonoBehaviour
             
             Debug.DrawRay(player.transform.position, direction * distance, Color.red);
             
-            if (hit.collider !=null && hit.collider == other) // si les coordonnées du raycast sont bien au meme endroit que celui du zombie alors il se fait attaqué
+            if (hit.collider !=null && hit.collider == other) 
             {
 
-                iaZombie = cibleZombie.GetComponent<IAZombie>();// on recupere le component du zombie touché par le raycast
+                iaZombie = cibleZombie.GetComponent<IAZombie>();
 
                 Debug.Log("LE RAYCAST TOUCHE LE ZOMBIE LOL CACA PROUT DIEU MERCI");
                 iaZombie.isHitten = true;
